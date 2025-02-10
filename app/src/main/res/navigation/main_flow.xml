@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_flow">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_flow"
+    app:startDestination="@id/moviesFragmentView">
 
+    <fragment
+        android:id="@+id/moviesFragmentView"
+        android:name="com.example.teste.ui.moviesScreen.MoviesFragmentView"
+        android:label="MoviesFragmentView"
+        tools:layout="@layout/movies_fragment"/>
 </navigation>
