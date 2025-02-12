@@ -1,10 +1,10 @@
 package com.example.teste.domain.models
 
 data class ResultsResponse(
-    val results: List<moviesModel>
+    val results: List<MoviesModel>
 )
 
-data class moviesModel(
+data class MoviesModel(
     val id: Int,
     val original_title: String,
     val backdrop_path: String,

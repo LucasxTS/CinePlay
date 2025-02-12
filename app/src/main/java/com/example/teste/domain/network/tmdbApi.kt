@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface TmdbApi {
     @GET("movie/popular")
-    suspend fun popularMovies(@Query("page") page: Int): Response<ResultsResponse?>
+    suspend fun popularMovies(@Query("page") page: Int): Response<ResultsResponse>
 }
