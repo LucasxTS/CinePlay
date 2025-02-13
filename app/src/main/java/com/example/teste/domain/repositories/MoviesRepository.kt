@@ -8,7 +8,7 @@ import com.example.teste.domain.network.TmdbApi
 import com.example.teste.domain.pagingSource.MoviePagingSource
 import kotlinx.coroutines.flow.Flow
 
-class MoviesRepository(private val tmdbApi: TmdbApi) {
+class MoviesApiRepository(private val tmdbApi: TmdbApi) {
     fun getPopularMovies(): Flow<PagingData<MoviesModel>> {
         return Pager(
             config = PagingConfig(

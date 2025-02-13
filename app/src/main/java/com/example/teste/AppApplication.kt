@@ -2,6 +2,7 @@ package com.example.teste
 
 import android.app.Application
 import com.example.teste.commons.di.apiModule
+import com.example.teste.commons.di.dataBaseModule
 import com.example.teste.commons.di.repositoryModule
 import com.example.teste.commons.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -15,9 +16,12 @@ class AppApplication(): Application() {
         startKoin {
             androidContext(this@AppApplication)
             modules(
-                apiModule,
-                repositoryModule,
-                viewModelModule
+                listOf(
+                    apiModule,
+                    repositoryModule,
+                    viewModelModule,
+                    dataBaseModule
+                )
             )
         }
     }
