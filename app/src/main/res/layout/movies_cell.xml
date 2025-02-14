@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:orientation="horizontal"
-    android:layout_margin="24dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_margin="8dp">
 
-    <LinearLayout
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <!-- CardView contendo a imagem do filme -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="180dp"
+        android:layout_height="270dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
 
         <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/movieImage"
                 android:contentDescription="movie"
-                android:scaleType="fitCenter"
-                android:layout_width="240dp"
-                android:layout_height="340dp"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:src="@drawable/ic_launcher_background"/>
 
             <ImageView
@@ -37,15 +37,19 @@
                 app:tint="@android:color/holo_red_light" />
         </FrameLayout>
 
-        <TextView
-            android:layout_marginStart="5dp"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:id="@+id/movie_name"
-            android:maxLines="3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="John Wick"/>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Nome do filme abaixo do card -->
+    <TextView
+        android:id="@+id/movie_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Nome do Filme"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:gravity="center"
+        android:ellipsize="end"/>
+
+</LinearLayout>

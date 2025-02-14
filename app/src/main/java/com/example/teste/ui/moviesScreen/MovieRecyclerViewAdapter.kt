@@ -10,7 +10,11 @@ import com.example.teste.R
 import com.example.teste.databinding.MoviesCellBinding
 import com.example.teste.domain.models.MoviesModel
 
-class MovieRecyclerViewAdapter :
+class MovieRecyclerViewAdapter(
+    private val onMovieClicked: (MoviesModel) -> Unit,
+    private val onFavoriteClick: (MoviesModel) -> Unit,
+    private val isFavorite: (Int) -> Boolean
+) :
     PagingDataAdapter<MoviesModel, MovieRecyclerViewAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -37,6 +41,15 @@ class MovieRecyclerViewAdapter :
                 placeholder(R.drawable.ic_launcher_background)
                 error(R.drawable.ic_launcher_foreground)
             }
+            binding.favoriteIcon.setOnClickListener {
+                onFavoriteClick(movie)
+            }
+            binding.favoriteIcon.setImageResource(
+                if (isFavorite(movie.id)) R.drawable.icons8_filled_heart_32 else R.drawable.baseline_favorite_border_24
+            )
+            binding.root.setOnClickListener {
+                onMovieClicked(movie)
+            }
         }
     }
 
@@ -51,5 +64,4 @@ class MovieRecyclerViewAdapter :
             }
         }
     }
-
 }

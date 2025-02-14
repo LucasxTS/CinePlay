@@ -1,9 +1,14 @@
 package com.example.teste.domain.repositories
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.example.teste.domain.models.MoviesModel
+import com.example.teste.domain.pagingSource.FavoriteMoviesPagingSource
 import com.example.teste.domain.room.daoInterface.FavoriteMovieDao
 import com.example.teste.domain.room.table.FavoriteMovie
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toSet
+import kotlinx.coroutines.flow.map
 
 class FavoriteMoviesRepository(private val dao: FavoriteMovieDao) {
     suspend fun addToFavoriteMovies(movie: FavoriteMovie) {
@@ -14,11 +19,20 @@ class FavoriteMoviesRepository(private val dao: FavoriteMovieDao) {
         dao.deleteMovie(movie)
     }
 
-    suspend fun getFavoriteIds(): Set<List<Int>> {
-        return dao.getFavoriteMoviesIds().toSet()
+    fun getFavoriteIds(): Flow<Set<Int>> {
+        return dao.getFavoriteMoviesIds()
+            .map { it.toSet() }
     }
 
-    fun getAllFavorites(): Flow<List<FavoriteMovie>> {
-        return dao.getAllFavoriteMovies()
+    fun getAllFavorites(): Flow<PagingData<MoviesModel>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                FavoriteMoviesPagingSource(dao)
+            }
+        ).flow
     }
 }

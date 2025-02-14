@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teste.databinding.MoviesFragmentBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -33,13 +35,60 @@ class MoviesFragmentView: Fragment() {
     }
 
     private fun setup() {
+        setupRecyclerView()
+        observeFavorites()
+        navigateToFavoritesMoviesView()
+        setupSearchBar()
+    }
+
+    private fun setupSearchBar() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                moviesViewModel.setSearchQuery(newText.orEmpty())
+                return true
+            }
+        })
+    }
+
+    private fun navigateToFavoritesMoviesView() {
+        binding.favoriteIconToNavigate.setOnClickListener {
+            val action = MoviesFragmentViewDirections.fromMoviesFragmentToFavoritesMovies()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun setupRecyclerView() {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        adapter = MovieRecyclerViewAdapter()
+        adapter = MovieRecyclerViewAdapter(
+            onFavoriteClick = { movie ->
+                moviesViewModel.toggleToFavorite(movie)
+            },
+            isFavorite = { movieId ->
+                moviesViewModel.favorites.value.contains(movieId)
+            },
+            onMovieClicked = { movie ->
+                val action = MoviesFragmentViewDirections.fromMoviesFragmentToDescriptionMoviesFragment(movie)
+                findNavController().navigate(action)
+            }
+        )
         recyclerView.adapter = adapter
         lifecycleScope.launch {
-            moviesViewModel.movies.collectLatest { pagingData ->
+            moviesViewModel.moviesFiltered.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
+                adapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+    private fun observeFavorites() {
+        lifecycleScope.launch {
+            moviesViewModel.favorites.collectLatest { pagingData ->
+                adapter.notifyDataSetChanged()
             }
         }
     }

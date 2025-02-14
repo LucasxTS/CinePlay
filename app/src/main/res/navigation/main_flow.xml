@@ -9,5 +9,31 @@
         android:id="@+id/moviesFragmentView"
         android:name="com.example.teste.ui.moviesScreen.MoviesFragmentView"
         android:label="MoviesFragmentView"
-        tools:layout="@layout/movies_fragment"/>
+        tools:layout="@layout/movies_fragment">
+        <action
+            android:id="@+id/fromMoviesFragmentToDescriptionMoviesFragment"
+            app:destination="@id/descriptionMoviesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/fromMoviesFragmentToFavoritesMovies"
+            app:destination="@id/favoritesMoviesScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionMoviesFragment"
+        android:name="com.example.teste.ui.descriptionScreen.DescriptionMoviesFragment"
+        android:label="DescriptionMoviesFragment"
+        tools:layout="@layout/description_movies_fragment">
+        <argument
+            android:name="movie"
+            app:argType="com.example.teste.domain.models.MoviesModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesMoviesScreen"
+        android:name="com.example.teste.ui.favoritesMoviesScreen.FavoritesMoviesScreen"
+        android:label="FavoritesMoviesScreen"
+        tools:layout="@layout/favorite_movies_fragment">
+        <action
+            android:id="@+id/fromFavoriteMoviesToDescriptionFragment"
+            app:destination="@id/descriptionMoviesFragment" />
+    </fragment>
 </navigation>

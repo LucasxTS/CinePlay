@@ -1,5 +1,6 @@
 package com.example.teste.domain.room.daoInterface
 
+import androidx.paging.PagingData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert

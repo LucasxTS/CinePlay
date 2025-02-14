@@ -27,8 +27,5 @@ class MoviePagingSource(private val tmdbApi: TmdbApi):
            LoadResult.Error(e)
         }
     }
-
-    override fun getRefreshKey(state: PagingState<Int, MoviesModel>): Int? {
-        TODO("Not yet implemented")
-    }
+    override fun getRefreshKey(state: PagingState<Int, MoviesModel>): Int? = null
 }
