@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
 import coil.size.ViewSizeResolver
+import com.example.teste.R
 import com.example.teste.databinding.DescriptionMoviesFragmentBinding
 
 class DescriptionMoviesFragment(): Fragment() {
@@ -31,7 +32,7 @@ class DescriptionMoviesFragment(): Fragment() {
     private fun setupMovieOnView() {
         binding.titleTextView.text = args.movie.title
         binding.overviewTextView.text = args.movie.overview
-        binding.releaseDateTextView.text = "Release date: ${args.movie.release_date}"
+        binding.releaseDateTextView.text = getString(R.string.releaseDateDescription, args.movie.release_date)
         binding.voteAverageTextView.text = args.movie.vote_average.formatToOneDecimal()
         binding.backdropImageView.load("$url${args.movie.backdrop_path}") {
             crossfade(true)

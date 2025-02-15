@@ -11,5 +11,6 @@ data class FavoriteMovie(
     val backdropPath: String,
     val releaseDate: String,
     val voteAverage: Double,
-    val overview: String
+    val overview: String,
+    val adult: Boolean
 )

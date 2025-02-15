@@ -8,7 +8,6 @@
     android:gravity="center_horizontal"
     android:layout_margin="8dp">
 
-    <!-- CardView contendo a imagem do filme -->
     <androidx.cardview.widget.CardView
         android:layout_width="180dp"
         android:layout_height="270dp"
@@ -21,7 +20,6 @@
 
             <ImageView
                 android:id="@+id/movieImage"
-                android:contentDescription="movie"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -39,13 +37,12 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Nome do filme abaixo do card -->
     <TextView
         android:id="@+id/movie_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Nome do Filme"
+        android:text="@string/MovieName"
         android:textSize="16sp"
         android:textColor="@color/white"
         android:maxLines="2"

@@ -11,7 +11,8 @@ fun MoviesModel.toFavoriteMovie(): FavoriteMovie {
         releaseDate = this.release_date,
         voteAverage = this.vote_average,
         overview = this.overview,
-        poster_path = this.poster_path
+        poster_path = this.poster_path,
+        adult = this.adult
     )
 }
 
@@ -23,6 +24,7 @@ fun FavoriteMovie.toMoviesModel(): MoviesModel {
         release_date = this.releaseDate,
         title = this.title,
         vote_average = this.voteAverage,
-        overview = this.overview
+        overview = this.overview,
+        adult = this.adult
     )
 }

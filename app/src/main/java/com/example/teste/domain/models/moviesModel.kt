@@ -7,6 +7,7 @@ data class ResultsResponse(
 )
 data class MoviesModel(
     val id: Int,
+    val adult: Boolean,
     val backdrop_path: String,
     val poster_path: String,
     val release_date: String,

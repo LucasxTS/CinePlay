@@ -2,5 +2,14 @@
     <string name="app_name">Teste</string>
     <string name="welcome">Welcome to CineApp</string>
     <string name="search">Search…</string>
-
+    <string name="titleName">Interstellar…</string>
+    <string name="FavoriteMoviesTitle">Favorite Movies</string>
+    <string name="Date">2014</string>
+    <string name="movieVoteAverage">8.6</string>
+    <string name="MovieName">John Wick</string>
+    <string name="VoteAverageTitle">Vote average</string>
+    <string name="AgeIndication">Age indication</string>
+    <string name="PopularMoviesTitle">Popular Movies:</string>
+    <string name="movieDescription">Uma equipe de exploradores viaja além da nossa galáxia para descobrir se a humanidade tem um futuro entre as estrelas.</string>
+    <string name="releaseDateDescription">Release date: %1$s</string>
 </resources>
